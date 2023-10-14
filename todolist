@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+      .btn {
+        background-color: #fff;
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+      }.error{
+        color: red;
+      }
+      .input-field {
+        width: 400px;
+      }
+      .input {
+        height: 30px;
+        width: 100%;
+        outline: none;
+      }
+      form {
+        background-color: #ff4500;
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .list {
+        width: 400px;
+      }
+      .list-item {
+        background-color: #ff4500;
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-field">
+        <form action="">
+          <input
+            type="text"
+            id="inputData"
+            class="input"
+            placeholder=" write somthing"
+          />
+          <button type="button" id="addBtn" class="btn">Add</button>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <ul class="list" id="list"></ul>
+    </div>
+    <script>
+      let addBtn = document.getElementById("addBtn");
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let data = document.getElementById("inputData").value;
+        if (data === "") {
+          let parentList = document.getElementById("list");
+          parentList.innerHTML = `<span class="error">!invlid input</span>`;
+        } else {
+          let data = document.getElementById("inputData").value;
+          let newLi = document.createElement("li");
+          newLi.className = "list-item";
+          newLi.innerHTML = `<span>${data}</span><button class="btn" onclick="deletBtn(this)">Delet</button>`;
+
+          let parentList = document.getElementById("list");
+          parentList.appendChild(newLi);
+        }
+      });
+
+      function deletBtn(e) {
+        e.parentElement.remove();
+      }
+    </script>
+  </body>
+</html>
