@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="main">
+      <div id="box">
+        <h2 id="queBox"></h2>
+        <div class="row">
+          <input
+            type="radio"
+            value="a"
+            id="option1"
+            class="options"
+            name="option"
+          />
+          <label for="option1">a option 1</label>
+        </div>
+        <div class="row">
+          <input
+            type="radio"
+            value="b"
+            id="option2"
+            class="options"
+            name="option"
+          />
+          <label for="option2">b option 2</label>
+        </div>
+        <div class="row">
+          <input
+            type="radio"
+            value="c"
+            id="option3"
+            class="options"
+            name="option"
+          />
+          <label for="option3">c option 3</label>
+        </div>
+        <div class="row">
+          <input
+            type="radio"
+            value="d"
+            id="option4"
+            class="options"
+            name="option"
+          />
+          <label for="option4">d option 4</label>
+        </div>
+        <div class="btn">
+          <button type="submit" onclick="submitQuiz()">submit</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          que: "what does HTML stand for?",
+
+          a: "Hpertext Markup Language",
+          b: "Hper Transfer Markup Language",
+          c: "Hpertext Machine Language",
+          d: "Hperlink and Text Markup Language",
+
+          correct: "a",
+        },
+        {
+          que: "what does HTML stand for??",
+
+          a: "Hper Transfer Markup Language",
+          b: "Hpertext Markup Language",
+          c: "Hpertext Machine Language",
+          d: "Hperlink and Text Markup Language",
+
+          correct: "b",
+        },
+        {
+          que: "what does HTML stand for??",
+          a: "Hper Transfer Markup Language",
+          b: "Hpertext Machine Language",
+          c: "Hpertext Markup Language",
+          d: "Hperlink and Text Markup Language",
+
+          correct: "c",
+        },
+      ];
+
+      let index = 0;
+      let total = questions.length;
+      let right = 0,
+        wrong = 0;
+      const queBox = document.getElementById("queBox");
+      const optionInputs = document.querySelectorAll(".options");
+      const loadQuestion = () => {
+        if (index === total) {
+          return endQuiz();
+        }
+        reset();
+        const data = questions[index];
+        queBox.innerHTML = `${data.que}`;
+        optionInputs[0].nextElementSibling.innerText = data.a;
+        optionInputs[1].nextElementSibling.innerText = data.b;
+        optionInputs[2].nextElementSibling.innerText = data.c;
+        optionInputs[3].nextElementSibling.innerText = data.d;
+      };
+
+      const submitQuiz = () => {
+        const ans = getAnswer();
+        const data = questions[index];
+        if (ans === data.correct) {
+          right++;
+        } else {
+          wrong++;
+        }
+        index++;
+        loadQuestion();
+        return;
+      };
+      const getAnswer = () => {
+        let answer;
+        optionInputs.forEach((input) => {
+          if (input.checked) {
+            answer = input.value;
+          } else {
+          }
+        });
+        return answer;
+      };
+
+      const reset = () => {
+        optionInputs.forEach((input) => {
+          input.checked = false;
+        });
+      };
+
+      const endQuiz = () => {
+        document.getElementById(
+          "box"
+        ).innerHTML = `${right}/${total}<h3>than you for playing quiz</h3>`;
+      };
+      loadQuestion();
+    </script>
+  </body>
+</html>
