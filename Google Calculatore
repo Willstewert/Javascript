@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <style>
+      .calc {
+        width: 605px;
+      }
+      #button {
+        width: 80px;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+      }
+      .row {
+        padding: 3px 10px;
+      }
+      #display {
+        margin: 10px 0;
+        width: 100%;
+        height: 80px;
+        border-radius: 5px;
+        border: 1px solid #dadce0;
+        outline: none;
+        pointer-events: none;
+        font-size: 20px;
+        font-weight: 500;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calc">
+      <div class="row">
+        <input type="text" id="display" />
+      </div>
+      <div class="row">
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="Rad"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="Deg"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="x!"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="("
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value=")"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="%"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="CE"
+          id="button"
+          class="clear"
+        />
+      </div>
+      <div class="row">
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="Inv"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="sin"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="In"
+          id="button"
+        />
+        <input type="button" value="7" id="button" />
+        <input type="button" value="8" id="button" />
+        <input type="button" value="9" id="button" />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="/"
+          id="button"
+        />
+      </div>
+      <div class="row">
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="π"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="cos"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="log"
+          id="button"
+        />
+        <input type="button" value="4" id="button" />
+        <input type="button" value="5" id="button" />
+        <input type="button" value="6" id="button" />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="*"
+          id="button"
+        />
+      </div>
+      <div class="row">
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="e"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="tan"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="√"
+          id="button"
+        />
+        <input type="button" value="1" id="button" />
+        <input type="button" value="2" id="button" />
+        <input type="button" value="3" id="button" />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="-"
+          id="button"
+        />
+      </div>
+      <div class="row">
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="Ans"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="EXP"
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="X"
+          id="button"
+        />
+        <input type="button" value="0" id="button" />
+        <input type="button" value="." id="button" />
+        <input
+          style="background-color: #4285f4; color: white"
+          type="button"
+          value="="
+          id="button"
+        />
+        <input
+          style="background-color: #dadce0"
+          type="button"
+          value="+"
+          id="button"
+        />
+      </div>
+    </div>
+
+    <script>
+      let string = "";
+      let buttons = document.querySelectorAll("#button");
+      function dis() {}
+
+      Array.from(buttons).forEach((buttons) => {
+        buttons.addEventListener("click", (e) => {
+          if (e.target.value === "=") {
+            string = eval(string);
+            document.getElementById("display").value = string;
+            document.querySelectorAll("#button")[6].value = "AC";
+          } else if (e.target.value === "sin") {
+            string = eval(string);
+            document.getElementById("display").value = Math.sin(string);
+          } else if (e.target.value === "cos") {
+            string = eval(string);
+            document.getElementById("display").value = Math.cos(string);
+          } else if (e.target.value === "tan") {
+            string = eval(string);
+            document.getElementById("display").value = Math.tan(string);
+          } else if (e.target.value === "π") {
+            string = Math.PI;
+            document.getElementById("display").value = string;
+          } else if (e.target.value === "log") {
+            string = eval(string);
+            document.getElementById("display").value = Math.log(string);
+          } else if (e.target.value === "√") {
+            string = eval(string);
+            document.getElementById("display").value = Math.sqrt(string);
+          } else if (e.target.value === "AC") {
+            string = "";
+            document.getElementById("display").value = string;
+            document.querySelectorAll("#button")[6].value = "CE";
+          } else if (e.target.value === "CE") {
+            string = string.toString().slice(0, -1);
+            document.getElementById("display").value = string;
+          } else {
+            string += e.target.value;
+            document.getElementById("display").value = string;
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
