@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+.container{
+  width: 300px;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.head .box{
+  display: flex;
+}
+.head h3 {
+  margin-right: 10px;
+  font-weight: 500;
+}
+.head .box h3{
+  margin-right: 10px;
+  font-weight: 400;
+}
+#callendar {
+  border: 1px solid gray;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, auto));
+  gap: 23;
+}
+#callendar .cell {
+  padding: 10px 0;
+  text-align: center;
+}
+#current-day {
+  background-color: #1a73e8;
+  border-radius: 50%;
+  color: #fff;
+}
