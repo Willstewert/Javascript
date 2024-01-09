@@ -1,4 +1,4 @@
-// insert Element in Array using js Dsa quation
+//Q No.1 insert Element in Array using js  
 
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,14];
 const newEl =200
